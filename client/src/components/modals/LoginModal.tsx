@@ -15,8 +15,8 @@ export function LoginModal({ isOpen, onClose, onSwitchToSignup }: LoginModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 md:p-8 relative animate-in slide-in-from-bottom-5 duration-300">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 md:p-8 relative animate-in slide-in-from-bottom-5 duration-300 m-auto">
         <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
