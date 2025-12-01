@@ -10,9 +10,12 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-green-100 transition-all duration-300">
       <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 group cursor-pointer" onClick={(e) => {
-            // Optional: Force refresh behavior if strictly required, but href="/" is usually sufficient.
-            // e.preventDefault(); window.location.href = "/"; 
+        <a href="#home" className="flex items-center gap-2 group cursor-pointer" onClick={(e) => {
+            e.preventDefault();
+            const element = document.getElementById('home');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
           }}>
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl group-hover:scale-105 transition-transform shadow-md shadow-primary/20">
               HC
@@ -22,7 +25,13 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="/" className="text-gray-600 hover:text-primary font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full py-1">Home</a>
+          <a href="#home" className="text-gray-600 hover:text-primary font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full py-1" onClick={(e) => {
+            e.preventDefault();
+            const element = document.getElementById('home');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}>Home</a>
           <a href="#about" className="text-gray-600 hover:text-primary font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full py-1">About Us</a>
           <a href="#services" className="text-gray-600 hover:text-primary font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full py-1">Services</a>
           <a href="#contact" className="text-gray-600 hover:text-primary font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full py-1">Contact</a>
@@ -50,7 +59,14 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden border-t border-gray-100 bg-white p-4 flex flex-col gap-2 shadow-lg absolute w-full animate-in slide-in-from-top-5 duration-200 left-0">
-          <a href="/" className="block py-3 px-4 hover:bg-green-50 text-gray-700 font-medium rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>Home</a>
+          <a href="#home" className="block py-3 px-4 hover:bg-green-50 text-gray-700 font-medium rounded-lg transition-colors" onClick={(e) => {
+            e.preventDefault();
+            setIsMenuOpen(false);
+            const element = document.getElementById('home');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}>Home</a>
           <a href="#about" className="block py-3 px-4 hover:bg-green-50 text-gray-700 font-medium rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>About Us</a>
           <a href="#services" className="block py-3 px-4 hover:bg-green-50 text-gray-700 font-medium rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>Services</a>
           <a href="#contact" className="block py-3 px-4 hover:bg-green-50 text-gray-700 font-medium rounded-lg transition-colors" onClick={() => setIsMenuOpen(false)}>Contact</a>

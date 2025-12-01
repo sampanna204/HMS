@@ -5,7 +5,7 @@ import heroImage from "@assets/stock_images/professional_doctor__fa4d53ae.jpg";
 
 export function Hero() {
   return (
-    <section className="relative py-12 lg:py-20 overflow-hidden bg-gradient-to-b from-green-50/50 to-white">
+    <section className="relative py-12 lg:py-20 overflow-hidden bg-gradient-to-b from-green-50/50 to-white" id="home">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
