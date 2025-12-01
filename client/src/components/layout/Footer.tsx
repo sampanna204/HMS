@@ -10,9 +10,9 @@ export function Footer() {
           <div className="space-y-6">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
-                HS
+                HC
               </div>
-              <span className="font-bold text-xl">Hamro Health</span>
+              <span className="font-bold text-xl">Health Care</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Empowering you and your family with the right care and support to stay healthy, happy, and thriving every step of the way.
@@ -70,7 +70,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>contact@hamrohealth.com</span>
+                <span>contact@healthcare.com</span>
               </li>
             </ul>
             
@@ -86,7 +86,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 text-center text-xs text-gray-400">
-          <p>&copy; 2025 Hamro Health. All rights reserved.</p>
+          <p>&copy; 2025 Health Care. All rights reserved.</p>
         </div>
       </div>
     </footer>

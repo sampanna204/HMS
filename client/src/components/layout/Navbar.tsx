@@ -14,9 +14,9 @@ export function Navbar() {
         <Link href="/">
           <a className="flex items-center gap-2 group cursor-pointer">
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl group-hover:scale-105 transition-transform">
-              HS
+              HC
             </div>
-            <span className="font-bold text-xl text-gray-800 hidden sm:block">Hamro Health</span>
+            <span className="font-bold text-xl text-gray-800 hidden sm:block">Health Care</span>
           </a>
         </Link>
 

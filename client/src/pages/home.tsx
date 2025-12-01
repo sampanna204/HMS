@@ -2,7 +2,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
-import { FeaturedServices } from "@/components/sections/FeaturedServices";
 import { PromoBanner } from "@/components/sections/PromoBanner";
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
       <main className="flex-grow">
         <Hero />
         <Services />
-        <FeaturedServices />
         <PromoBanner />
       </main>
       <Footer />
