@@ -1,4 +1,3 @@
-
 import { Search, Menu, X, User, LogOut, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -104,52 +103,23 @@ export function Navbar() {
                     setAuthMode("login");
                     setShowAuth(true);
                   }}
-                  variant="ghost"
-                  className="rounded-full h-10 px-6 font-semibold"
+                  className="rounded-full h-10 px-6 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg font-semibold flex items-center gap-2"
                 >
-                  Sign In
-                </Button>
-                <Button
-                  onClick={() => {
-                    setAuthMode("signup");
-                    setShowAuth(true);
-                  }}
-                  className="rounded-full h-10 px-6 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg font-semibold"
-                >
-                  Sign Up
+                  <User className="w-4 h-4" />
+                  Account
                 </Button>
               </>
             )}
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-gray-700 hover:text-primary transition-all flex-shrink-0"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
 
-        {/* Mobile Search */}
-        <form onSubmit={handleSearch} className="md:hidden pb-4">
-          <div className="relative">
-            <Input
-              type="text"
-              placeholder="Search services..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-10 pl-10 pr-4 rounded-full border-2 border-gray-200 focus:border-primary"
-            />
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          </div>
-        </form>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white shadow-lg animate-in slide-in-from-top-5 duration-200">
-          <div className="container mx-auto px-4 py-4 space-y-2">
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-lg transition-all duration-300 ${
+            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+          }`}
+        >
+          <div className="p-4 space-y-3">
             <a
               href="#services"
               className="block py-3 px-4 hover:bg-gray-50 text-gray-800 font-medium rounded-lg transition-colors"
@@ -190,33 +160,45 @@ export function Navbar() {
                 </Button>
               </div>
             ) : (
-              <div className="pt-4 mt-2 border-t border-gray-200 flex gap-3">
+              <div className="pt-4 mt-2 border-t border-gray-200">
                 <Button
                   onClick={() => {
                     setAuthMode("login");
                     setShowAuth(true);
                     setIsMenuOpen(false);
                   }}
-                  variant="outline"
-                  className="flex-1 rounded-lg"
+                  className="w-full rounded-lg bg-gradient-to-r from-primary to-green-600"
                 >
-                  Sign In
-                </Button>
-                <Button
-                  onClick={() => {
-                    setAuthMode("signup");
-                    setShowAuth(true);
-                    setIsMenuOpen(false);
-                  }}
-                  className="flex-1 rounded-lg bg-gradient-to-r from-primary to-green-600"
-                >
-                  Sign Up
+                  <User className="w-4 h-4 mr-2" />
+                  Account
                 </Button>
               </div>
             )}
           </div>
         </div>
-      )}
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 text-gray-700 hover:text-primary transition-all flex-shrink-0"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Search */}
+      <form onSubmit={handleSearch} className="md:hidden pb-4">
+        <div className="relative">
+          <Input
+            type="text"
+            placeholder="Search services..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full h-10 pl-10 pr-4 rounded-full border-2 border-gray-200 focus:border-primary"
+          />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        </div>
+      </form>
 
       {/* Auth Modal */}
       <AuthModal
