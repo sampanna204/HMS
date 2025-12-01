@@ -79,15 +79,8 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white/98 backdrop-blur-md p-4 flex flex-col gap-2 shadow-2xl absolute w-full animate-in slide-in-from-top-5 duration-200 left-0">
-          <a href="#home" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={(e) => {
-            e.preventDefault();
-            setIsMenuOpen(false);
-            const element = document.getElementById('home');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}>Home</a>
+        <div className="md:hidden border-t border-gray-100 bg-white/98 backdrop-blur-md p-4 flex flex-col gap-2 shadow-2xl w-full animate-in slide-in-from-top-5 duration-200">
+          <button onClick={(e) => { setIsMenuOpen(false); const element = document.getElementById('home'); element?.scrollIntoView({ behavior: 'smooth' }); }} className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary text-left">Home</button>
           <a href="#about" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>About</a>
           <a href="#services" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Services</a>
           <a href="#contact" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Contact</a>
