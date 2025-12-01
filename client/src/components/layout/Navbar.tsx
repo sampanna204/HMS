@@ -1,4 +1,4 @@
-import { Menu, X, LogIn, UserPlus } from "lucide-react";
+import { Search, Menu, X, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AuthModal } from "@/components/modals/AuthModal";
@@ -55,6 +55,9 @@ export function Navbar() {
 
         {/* Right Side - Auth Buttons */}
         <div className="hidden md:flex items-center gap-3">
+          <Button variant="ghost" className="rounded-full w-10 h-10 md:w-12 md:h-12 text-gray-600 hover:text-primary hover:bg-green-50/80 transition-all duration-300 flex items-center justify-center group">
+            <Search className="w-6 h-6 group-hover:scale-110 transition-transform" />
+          </Button>
           <Button onClick={() => { setAuthMode("login"); setShowAuth(true); }} variant="outline" className="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
             <LogIn className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
