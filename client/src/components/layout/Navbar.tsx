@@ -1,4 +1,4 @@
-import { Search, Menu, X, LogIn } from "lucide-react";
+import { Search, Menu, X, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LoginModal } from "@/components/modals/LoginModal";
@@ -62,8 +62,8 @@ export function Navbar() {
           <Button onClick={() => setShowLogin(true)} variant="outline" className="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
             <LogIn className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
-          <Button onClick={() => setShowSignup(true)} className="rounded-full px-6 md:px-8 h-10 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white font-semibold transition-all duration-300">
-            Sign Up
+          <Button onClick={() => setShowSignup(true)} className="rounded-full w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white transition-all duration-300 flex items-center justify-center">
+            <UserPlus className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
         </div>
 
@@ -84,12 +84,12 @@ export function Navbar() {
           <a href="#services" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Services</a>
           <a href="#contact" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Contact</a>
           
-          <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-3">
-            <Button onClick={() => { setShowLogin(true); setIsMenuOpen(false); }} variant="outline" className="w-full rounded-lg h-11 border-2 border-primary text-primary hover:bg-primary/5 font-semibold">
-              Login
+          <div className="pt-4 mt-2 border-t border-gray-100 flex gap-3 justify-center">
+            <Button onClick={() => { setShowLogin(true); setIsMenuOpen(false); }} variant="outline" className="rounded-full w-12 h-12 border-2 border-primary text-primary hover:bg-primary/5 flex items-center justify-center">
+              <LogIn className="w-6 h-6" />
             </Button>
-            <Button onClick={() => { setShowSignup(true); setIsMenuOpen(false); }} className="w-full rounded-lg h-11 bg-gradient-to-r from-primary to-green-600 text-white font-semibold">
-              Sign Up
+            <Button onClick={() => { setShowSignup(true); setIsMenuOpen(false); }} className="rounded-full w-12 h-12 bg-gradient-to-r from-primary to-green-600 text-white flex items-center justify-center">
+              <UserPlus className="w-6 h-6" />
             </Button>
           </div>
         </div>
