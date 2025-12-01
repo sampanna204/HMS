@@ -39,7 +39,7 @@ export function Navbar() {
             </div>
             <div className="hidden sm:block">
               <span className="font-bold text-lg md:text-xl text-gray-900 group-hover:text-primary transition-colors">
-                Health Care
+                Sanjivani Health Care Service
               </span>
             </div>
           </a>
