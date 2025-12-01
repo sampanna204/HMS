@@ -24,7 +24,6 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           <Link href="/"><a className="text-gray-600 hover:text-primary font-medium transition-colors">Home</a></Link>
           <Link href="/services"><a className="text-gray-600 hover:text-primary font-medium transition-colors">Services</a></Link>
-          <Link href="/doctors"><a className="text-gray-600 hover:text-primary font-medium transition-colors">Doctors</a></Link>
           <Link href="/contact"><a className="text-gray-600 hover:text-primary font-medium transition-colors">Contact</a></Link>
         </div>
 
@@ -56,7 +55,6 @@ export function Navbar() {
         <div className="md:hidden border-t border-gray-100 bg-white p-4 flex flex-col gap-4 shadow-lg absolute w-full">
           <Link href="/"><a className="block py-2 px-4 hover:bg-green-50 text-gray-600 font-medium rounded-lg">Home</a></Link>
           <Link href="/services"><a className="block py-2 px-4 hover:bg-green-50 text-gray-600 font-medium rounded-lg">Services</a></Link>
-          <Link href="/doctors"><a className="block py-2 px-4 hover:bg-green-50 text-gray-600 font-medium rounded-lg">Doctors</a></Link>
           <Link href="/contact"><a className="block py-2 px-4 hover:bg-green-50 text-gray-600 font-medium rounded-lg">Contact</a></Link>
           <div className="pt-4 border-t border-gray-100">
             <Button className="w-full rounded-full">Login</Button>

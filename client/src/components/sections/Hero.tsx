@@ -18,16 +18,16 @@ export function Hero() {
           >
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1]">
-                Your Health Journey, <br />
+                Your Wellness, <br />
                 <span className="text-primary relative inline-block">
-                  Our Commitment!
+                  Our Promise.
                   <svg className="absolute w-full h-3 -bottom-1 left-0 text-green-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                     <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
                   </svg>
                 </span>
               </h1>
               <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
-                Empowering you and your family with the right care and support to stay healthy, happy, and thriving every step of the way.
+                Guiding you and your loved ones toward a healthier, brighter tomorrow
               </p>
             </div>
 
