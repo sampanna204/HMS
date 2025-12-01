@@ -32,10 +32,25 @@ export function Hero() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="rounded-full px-8 text-base h-14 shadow-lg shadow-primary/25 hover:scale-105 transition-transform">
+              <Button
+                size="lg"
+                onClick={() => {
+                  const element = document.getElementById('services');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="rounded-full px-8 text-base h-14 shadow-lg shadow-primary/25 hover:scale-105 transition-transform"
+              >
                 Explore Services
               </Button>
-              <Button size="lg" variant="outline" className="rounded-full px-8 text-base h-14 border-2 hover:bg-gray-50 text-gray-700">
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => {
+                  const element = document.getElementById('services');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="rounded-full px-8 text-base h-14 border-2 hover:bg-gray-50 text-gray-700"
+              >
                 Book Appointment
               </Button>
             </div>

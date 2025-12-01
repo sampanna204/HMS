@@ -1,132 +1,226 @@
-import { Search, Menu, X, LogIn, UserPlus } from "lucide-react";
+
+import { Search, Menu, X, User, LogOut, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AuthModal } from "@/components/modals/AuthModal";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/App";
+import { useLocation } from "wouter";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
-  const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { isAuthenticated, user, logout } = useAuth();
+  const [, setLocation] = useLocation();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setLocation(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/98 backdrop-blur-xl border-b border-gray-100 shadow-lg transition-all duration-300">
-      <div className="container mx-auto px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-3 group cursor-pointer flex-shrink-0" onClick={(e) => {
-            e.preventDefault();
-            const element = document.getElementById('home');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}>
-            <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary via-green-500 to-green-600 flex items-center justify-center text-white font-bold text-xl md:text-2xl group-hover:scale-110 transition-transform shadow-lg shadow-primary/40 group-hover:shadow-2xl group-hover:shadow-primary/50">
-              HC
+    <nav className="sticky top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <a 
+            href="/" 
+            className="flex items-center gap-2 group cursor-pointer flex-shrink-0"
+            onClick={(e) => {
+              e.preventDefault();
+              setLocation("/");
+            }}
+          >
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary to-green-600 flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
+              H
             </div>
             <div className="hidden sm:block">
-              <span className="font-bold text-xl md:text-2xl text-gray-900 group-hover:text-primary transition-colors block leading-tight">Health Care</span>
+              <span className="font-bold text-lg md:text-xl text-gray-900 group-hover:text-primary transition-colors">
+                Health Care
+              </span>
             </div>
-        </a>
+          </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-2 xl:gap-8">
-          <a href="#home" className="px-4 py-2 text-gray-700 hover:text-primary font-semibold text-sm transition-all duration-300 relative group" onClick={(e) => {
-            e.preventDefault();
-            const element = document.getElementById('home');
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}>
-            Home
-            <span className="absolute bottom-0 left-4 right-4 h-1 bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-          </a>
-          <a href="#about" className="px-4 py-2 text-gray-700 hover:text-primary font-semibold text-sm transition-all duration-300 relative group">
-            About
-            <span className="absolute bottom-0 left-4 right-4 h-1 bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-          </a>
-          <a href="#services" className="px-4 py-2 text-gray-700 hover:text-primary font-semibold text-sm transition-all duration-300 relative group">
-            Services
-            <span className="absolute bottom-0 left-4 right-4 h-1 bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-          </a>
-          <a href="#contact" className="px-4 py-2 text-gray-700 hover:text-primary font-semibold text-sm transition-all duration-300 relative group">
-            Contact
-            <span className="absolute bottom-0 left-4 right-4 h-1 bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-          </a>
-        </div>
-
-        {/* Right Side - Search & Auth Buttons */}
-        <div className="hidden md:flex items-center gap-3">
-          {showSearch ? (
-            <div className="flex items-center gap-2 animate-in slide-in-from-right-5 duration-200">
+          {/* Search Bar - Desktop */}
+          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-xl mx-8">
+            <div className="relative w-full">
               <Input
                 type="text"
-                placeholder="Search services..."
+                placeholder="Search services (doctor, nurse, medicine...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-48 h-10 rounded-full"
-                autoFocus
+                className="w-full h-11 pl-11 pr-4 rounded-full border-2 border-gray-200 focus:border-primary transition-colors"
               />
-              <Button 
-                variant="ghost" 
-                onClick={() => {
-                  setShowSearch(false);
-                  setSearchQuery("");
-                }}
-                className="rounded-full w-10 h-10 text-gray-600 hover:text-primary"
-              >
-                <X className="w-5 h-5" />
-              </Button>
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             </div>
-          ) : (
-            <Button 
-              variant="ghost" 
-              onClick={() => setShowSearch(true)}
-              className="rounded-full w-10 h-10 md:w-12 md:h-12 text-gray-600 hover:text-primary hover:bg-green-50/80 transition-all duration-300 flex items-center justify-center group"
-            >
-              <Search className="w-6 h-6 group-hover:scale-110 transition-transform" />
-            </Button>
-          )}
-          <Button onClick={() => { setAuthMode("login"); setShowAuth(true); }} variant="outline" className="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
-            <LogIn className="w-5 h-5 md:w-6 md:h-6" />
-          </Button>
-          <Button onClick={() => { setAuthMode("signup"); setShowAuth(true); }} className="rounded-full w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white transition-all duration-300 flex items-center justify-center">
-            <UserPlus className="w-5 h-5 md:w-6 md:h-6" />
-          </Button>
+          </form>
+
+          {/* Desktop Nav Links */}
+          <div className="hidden lg:flex items-center gap-6 mx-6">
+            <a href="#services" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+              Services
+            </a>
+            <a href="#about" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+              About
+            </a>
+            <a href="#contact" className="text-sm font-medium text-gray-700 hover:text-primary transition-colors">
+              Contact
+            </a>
+          </div>
+
+          {/* Right Side - Auth/User */}
+          <div className="hidden md:flex items-center gap-3">
+            {isAuthenticated ? (
+              <>
+                <Button variant="ghost" className="rounded-full h-10">
+                  <ShoppingCart className="w-5 h-5" />
+                </Button>
+                <div className="relative group">
+                  <Button variant="outline" className="rounded-full h-10 px-4 border-2 border-primary">
+                    <User className="w-4 h-4 mr-2" />
+                    <span className="text-sm font-medium">{user?.name || "User"}</span>
+                  </Button>
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    <div className="p-2">
+                      <button
+                        onClick={logout}
+                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <Button
+                  onClick={() => {
+                    setAuthMode("login");
+                    setShowAuth(true);
+                  }}
+                  variant="ghost"
+                  className="rounded-full h-10 px-6 font-semibold"
+                >
+                  Sign In
+                </Button>
+                <Button
+                  onClick={() => {
+                    setAuthMode("signup");
+                    setShowAuth(true);
+                  }}
+                  className="rounded-full h-10 px-6 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg font-semibold"
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 text-gray-700 hover:text-primary transition-all flex-shrink-0"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden p-2 text-gray-700 hover:text-primary transition-all duration-300 flex-shrink-0"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile Search */}
+        <form onSubmit={handleSearch} className="md:hidden pb-4">
+          <div className="relative">
+            <Input
+              type="text"
+              placeholder="Search services..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full h-10 pl-10 pr-4 rounded-full border-2 border-gray-200 focus:border-primary"
+            />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          </div>
+        </form>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white/98 backdrop-blur-md p-4 flex flex-col gap-2 shadow-2xl w-full animate-in slide-in-from-top-5 duration-200">
-          <button onClick={(e) => { setIsMenuOpen(false); const element = document.getElementById('home'); element?.scrollIntoView({ behavior: 'smooth' }); }} className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary text-left">Home</button>
-          <a href="#about" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>About</a>
-          <a href="#services" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Services</a>
-          <a href="#contact" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Contact</a>
-          
-          <div className="pt-4 mt-2 border-t border-gray-100 flex gap-3 justify-center">
-            <Button onClick={() => { setAuthMode("login"); setShowAuth(true); setIsMenuOpen(false); }} variant="outline" className="rounded-full w-12 h-12 border-2 border-primary text-primary hover:bg-primary/5 flex items-center justify-center">
-              <LogIn className="w-6 h-6" />
-            </Button>
-            <Button onClick={() => { setAuthMode("signup"); setShowAuth(true); setIsMenuOpen(false); }} className="rounded-full w-12 h-12 bg-gradient-to-r from-primary to-green-600 text-white flex items-center justify-center">
-              <UserPlus className="w-6 h-6" />
-            </Button>
+        <div className="md:hidden border-t border-gray-200 bg-white shadow-lg animate-in slide-in-from-top-5 duration-200">
+          <div className="container mx-auto px-4 py-4 space-y-2">
+            <a
+              href="#services"
+              className="block py-3 px-4 hover:bg-gray-50 text-gray-800 font-medium rounded-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Services
+            </a>
+            <a
+              href="#about"
+              className="block py-3 px-4 hover:bg-gray-50 text-gray-800 font-medium rounded-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About
+            </a>
+            <a
+              href="#contact"
+              className="block py-3 px-4 hover:bg-gray-50 text-gray-800 font-medium rounded-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </a>
+
+            {isAuthenticated ? (
+              <div className="pt-4 mt-2 border-t border-gray-200 space-y-2">
+                <div className="px-4 py-2 text-sm text-gray-600">
+                  Signed in as <span className="font-semibold">{user?.email}</span>
+                </div>
+                <Button
+                  onClick={() => {
+                    logout();
+                    setIsMenuOpen(false);
+                  }}
+                  variant="outline"
+                  className="w-full rounded-lg"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <div className="pt-4 mt-2 border-t border-gray-200 flex gap-3">
+                <Button
+                  onClick={() => {
+                    setAuthMode("login");
+                    setShowAuth(true);
+                    setIsMenuOpen(false);
+                  }}
+                  variant="outline"
+                  className="flex-1 rounded-lg"
+                >
+                  Sign In
+                </Button>
+                <Button
+                  onClick={() => {
+                    setAuthMode("signup");
+                    setShowAuth(true);
+                    setIsMenuOpen(false);
+                  }}
+                  className="flex-1 rounded-lg bg-gradient-to-r from-primary to-green-600"
+                >
+                  Sign Up
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       )}
 
       {/* Auth Modal */}
-      <AuthModal 
-        isOpen={showAuth} 
+      <AuthModal
+        isOpen={showAuth}
         onClose={() => setShowAuth(false)}
         initialMode={authMode}
       />

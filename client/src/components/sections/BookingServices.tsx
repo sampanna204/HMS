@@ -14,6 +14,9 @@ import { NurseBooking } from "@/components/modals/NurseBooking";
 import { LabTestBooking } from "@/components/modals/LabTestBooking";
 import { MedicineDeliveryBooking } from "@/components/modals/MedicineDeliveryBooking";
 import { AmbulanceBooking } from "@/components/modals/AmbulanceBooking";
+import { useAuth } from "@/App";
+import { useToast } from "@/hooks/use-toast";
+import { AuthModal } from "@/components/modals/AuthModal";
 
 const bookingServices = [
   {
@@ -78,16 +81,40 @@ const bookingServices = [
   }
 ];
 
-export function BookingServices() {
+interface BookingServicesProps {
+  searchQuery?: string;
+}
+
+export function BookingServices({ searchQuery = "" }: BookingServicesProps) {
   const [activeModal, setActiveModal] = useState<number | null>(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const { toast } = useToast();
 
   const openBooking = (serviceId: number) => {
+    if (!isAuthenticated) {
+      toast({
+        title: "Authentication Required",
+        description: "Please sign in to book this service",
+        variant: "destructive"
+      });
+      setShowAuthModal(true);
+      return;
+    }
     setActiveModal(serviceId);
   };
 
   const closeBooking = () => {
     setActiveModal(null);
   };
+
+  const filteredServices = searchQuery
+    ? bookingServices.filter(
+        (service) =>
+          service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          service.description.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : bookingServices;
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-green-50/30" id="services">
@@ -99,8 +126,14 @@ export function BookingServices() {
           </p>
         </div>
 
+        {filteredServices.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No services found matching "{searchQuery}"</p>
+          </div>
+        )}
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {bookingServices.map((service, index) => (
+          {filteredServices.map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
@@ -187,6 +220,12 @@ export function BookingServices() {
       <LabTestBooking isOpen={activeModal === 4} onClose={closeBooking} />
       <MedicineDeliveryBooking isOpen={activeModal === 5} onClose={closeBooking} />
       <AmbulanceBooking isOpen={activeModal === 6} onClose={closeBooking} />
+      
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        initialMode="login"
+      />
     </section>
   );
 }
