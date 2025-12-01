@@ -31,21 +31,21 @@ export function LoginModal({ isOpen, onClose, onSwitchToSignup }: LoginModalProp
 
         <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Email</label>
+            <label className="block text-xs font-semibold text-gray-700 mb-1 text-center">Email</label>
             <Input
               type="email"
               placeholder="you@example.com"
-              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm"
+              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm w-full"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Password</label>
-            <div className="relative">
+            <label className="block text-xs font-semibold text-gray-700 mb-1 text-center">Password</label>
+            <div className="relative w-full">
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm pr-10"
+                className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm pr-10 w-full"
               />
               <button
                 type="button"
@@ -57,12 +57,12 @@ export function LoginModal({ isOpen, onClose, onSwitchToSignup }: LoginModalProp
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-sm">
+          <div className="flex flex-col items-center gap-3 text-sm">
             <label className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" className="w-4 h-4 rounded accent-primary" />
               <span className="text-gray-600">Remember me</span>
             </label>
-            <a href="#" className="text-primary font-semibold hover:underline">Forgot?</a>
+            <a href="#" className="text-primary font-semibold hover:underline">Forgot Password?</a>
           </div>
 
           <Button className="w-full h-10 rounded-lg font-semibold text-sm bg-gradient-to-r from-primary to-green-600 hover:shadow-lg">

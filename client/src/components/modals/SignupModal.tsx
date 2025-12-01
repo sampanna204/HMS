@@ -31,37 +31,37 @@ export function SignupModal({ isOpen, onClose, onSwitchToLogin }: SignupModalPro
 
         <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Full Name</label>
+            <label className="block text-xs font-semibold text-gray-700 mb-1 text-center">Full Name</label>
             <Input
               placeholder="John Doe"
-              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm"
+              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm w-full"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Phone</label>
+            <label className="block text-xs font-semibold text-gray-700 mb-1 text-center">Phone</label>
             <Input
               placeholder="+977 98XXXXXXXX"
-              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm"
+              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm w-full"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Email</label>
+            <label className="block text-xs font-semibold text-gray-700 mb-1 text-center">Email</label>
             <Input
               type="email"
               placeholder="you@example.com"
-              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm"
+              className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm w-full"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Password</label>
-            <div className="relative">
+            <label className="block text-xs font-semibold text-gray-700 mb-1 text-center">Password</label>
+            <div className="relative w-full">
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm pr-10"
+                className="h-10 rounded-lg bg-gray-50 border-gray-200 text-sm pr-10 w-full"
               />
               <button
                 type="button"
@@ -73,9 +73,9 @@ export function SignupModal({ isOpen, onClose, onSwitchToLogin }: SignupModalPro
             </div>
           </div>
 
-          <label className="flex items-start gap-2 text-xs">
+          <label className="flex items-start gap-2 text-xs justify-center">
             <input type="checkbox" className="mt-1 w-4 h-4 rounded accent-primary" />
-            <span className="text-gray-600">
+            <span className="text-gray-600 text-center">
               I agree to the <a href="#" className="text-primary font-semibold">Terms</a> and <a href="#" className="text-primary font-semibold">Privacy Policy</a>
             </span>
           </label>
