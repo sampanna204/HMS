@@ -1,4 +1,4 @@
-import { Search, Menu, X, User, LogOut, ShoppingCart } from "lucide-react";
+import { Search, Menu, X, User, LogOut } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AuthModal } from "@/components/modals/AuthModal";
@@ -75,9 +75,6 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             {isAuthenticated ? (
               <>
-                <Button variant="ghost" className="rounded-full h-10">
-                  <ShoppingCart className="w-5 h-5" />
-                </Button>
                 <div className="relative group">
                   <Button variant="outline" className="rounded-full h-10 px-4 border-2 border-primary">
                     <User className="w-4 h-4 mr-2" />
