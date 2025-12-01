@@ -59,9 +59,8 @@ export function Navbar() {
           <Button variant="ghost" className="rounded-full w-10 h-10 md:w-12 md:h-12 text-gray-600 hover:text-primary hover:bg-green-50/80 transition-all duration-300 flex items-center justify-center group">
             <Search className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </Button>
-          <Button onClick={() => setShowLogin(true)} variant="outline" className="rounded-full px-6 md:px-8 h-10 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 font-semibold transition-all duration-300 flex items-center gap-2">
-            <LogIn className="w-4 h-4" />
-            <span className="hidden sm:inline">Login</span>
+          <Button onClick={() => setShowLogin(true)} variant="outline" className="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
+            <LogIn className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
           <Button onClick={() => setShowSignup(true)} className="rounded-full px-6 md:px-8 h-10 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white font-semibold transition-all duration-300">
             Sign Up
