@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Heart, UserPlus } from "lucide-react";
 import { motion } from "framer-motion";
-import heroImage from "@assets/generated_images/modern_healthcare_professional_doctor.png";
+import heroImage from "@assets/generated_images/man_booking_health_service_online.png";
 
 export function Hero() {
   return (
