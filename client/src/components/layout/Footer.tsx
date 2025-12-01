@@ -37,11 +37,10 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-6">Quick Links</h3>
             <ul className="space-y-4 text-sm text-gray-300">
-              <li><Link href="/"><a className="hover:text-primary transition-colors">Home</a></Link></li>
-              <li><Link href="/about"><a className="hover:text-primary transition-colors">About Us</a></Link></li>
-              <li><Link href="/services"><a className="hover:text-primary transition-colors">Services</a></Link></li>
-              <li><Link href="/doctors"><a className="hover:text-primary transition-colors">Doctors</a></Link></li>
-              <li><Link href="/blog"><a className="hover:text-primary transition-colors">Health Blog</a></Link></li>
+              <li><a href="/" className="hover:text-primary transition-colors">Home</a></li>
+              <li><a href="#about" className="hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Services</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Contact Us</a></li>
             </ul>
           </div>
 
@@ -49,10 +48,9 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-lg mb-6">Company</h3>
             <ul className="space-y-4 text-sm text-gray-300">
-              <li><Link href="/privacy"><a className="hover:text-primary transition-colors">Privacy Policy</a></Link></li>
-              <li><Link href="/terms"><a className="hover:text-primary transition-colors">Terms of Service</a></Link></li>
-              <li><Link href="/careers"><a className="hover:text-primary transition-colors">Careers</a></Link></li>
-              <li><Link href="/contact"><a className="hover:text-primary transition-colors">Contact Us</a></Link></li>
+              <li><a href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="/careers" className="hover:text-primary transition-colors">Careers</a></li>
             </ul>
           </div>
 
