@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Eye, EyeOff, X } from "lucide-react";
+import { Eye, EyeOff, X, Mail, Lock, User as UserIcon, Phone } from "lucide-react";
 import { useAuth } from "@/App";
 import { useToast } from "@/hooks/use-toast";
 
@@ -113,46 +113,56 @@ export function AuthModal({ isOpen, onClose, initialMode = "login" }: AuthModalP
             <>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name</label>
-                <Input
-                  placeholder="John Doe"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-11 rounded-lg bg-gray-50 border-gray-200"
-                />
+                <div className="relative">
+                  <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input
+                    placeholder="John Doe"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="h-11 rounded-lg bg-gray-50 border-gray-200 pl-10"
+                  />
+                </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone Number</label>
-                <Input
-                  placeholder="+977 98XXXXXXXX"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="h-11 rounded-lg bg-gray-50 border-gray-200"
-                />
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Input
+                    placeholder="+977 98XXXXXXXX"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="h-11 rounded-lg bg-gray-50 border-gray-200 pl-10"
+                  />
+                </div>
               </div>
             </>
           )}
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address</label>
-            <Input
-              type="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="h-11 rounded-lg bg-gray-50 border-gray-200"
-            />
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                type="email"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="h-11 rounded-lg bg-gray-50 border-gray-200 pl-10"
+              />
+            </div>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
             <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="h-11 rounded-lg bg-gray-50 border-gray-200 pr-10"
+                className="h-11 rounded-lg bg-gray-50 border-gray-200 pl-10 pr-10"
               />
               <button
                 type="button"
