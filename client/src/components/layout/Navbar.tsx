@@ -1,13 +1,12 @@
 import { Search, Menu, X, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { LoginModal } from "@/components/modals/LoginModal";
-import { SignupModal } from "@/components/modals/SignupModal";
+import { AuthModal } from "@/components/modals/AuthModal";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignup, setShowSignup] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+  const [authMode, setAuthMode] = useState<"login" | "signup">("login");
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/98 backdrop-blur-xl border-b border-gray-100 shadow-lg transition-all duration-300">
@@ -59,10 +58,10 @@ export function Navbar() {
           <Button variant="ghost" className="rounded-full w-10 h-10 md:w-12 md:h-12 text-gray-600 hover:text-primary hover:bg-green-50/80 transition-all duration-300 flex items-center justify-center group">
             <Search className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </Button>
-          <Button onClick={() => setShowLogin(true)} variant="outline" className="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
+          <Button onClick={() => { setAuthMode("login"); setShowAuth(true); }} variant="outline" className="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
             <LogIn className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
-          <Button onClick={() => setShowSignup(true)} className="rounded-full w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white transition-all duration-300 flex items-center justify-center">
+          <Button onClick={() => { setAuthMode("signup"); setShowAuth(true); }} className="rounded-full w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white transition-all duration-300 flex items-center justify-center">
             <UserPlus className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
         </div>
@@ -85,26 +84,21 @@ export function Navbar() {
           <a href="#contact" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Contact</a>
           
           <div className="pt-4 mt-2 border-t border-gray-100 flex gap-3 justify-center">
-            <Button onClick={() => { setShowLogin(true); setIsMenuOpen(false); }} variant="outline" className="rounded-full w-12 h-12 border-2 border-primary text-primary hover:bg-primary/5 flex items-center justify-center">
+            <Button onClick={() => { setAuthMode("login"); setShowAuth(true); setIsMenuOpen(false); }} variant="outline" className="rounded-full w-12 h-12 border-2 border-primary text-primary hover:bg-primary/5 flex items-center justify-center">
               <LogIn className="w-6 h-6" />
             </Button>
-            <Button onClick={() => { setShowSignup(true); setIsMenuOpen(false); }} className="rounded-full w-12 h-12 bg-gradient-to-r from-primary to-green-600 text-white flex items-center justify-center">
+            <Button onClick={() => { setAuthMode("signup"); setShowAuth(true); setIsMenuOpen(false); }} className="rounded-full w-12 h-12 bg-gradient-to-r from-primary to-green-600 text-white flex items-center justify-center">
               <UserPlus className="w-6 h-6" />
             </Button>
           </div>
         </div>
       )}
 
-      {/* Auth Modals */}
-      <LoginModal 
-        isOpen={showLogin} 
-        onClose={() => setShowLogin(false)}
-        onSwitchToSignup={() => setShowSignup(true)}
-      />
-      <SignupModal 
-        isOpen={showSignup} 
-        onClose={() => setShowSignup(false)}
-        onSwitchToLogin={() => setShowLogin(true)}
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={showAuth} 
+        onClose={() => setShowAuth(false)}
+        initialMode={authMode}
       />
     </nav>
   );
