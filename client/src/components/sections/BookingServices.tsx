@@ -1,10 +1,19 @@
+import { useState } from "react";
 import doctorVideoImg from "@assets/generated_images/doctor_telemedicine_video_consultation.png";
+import physicianImg from "@assets/generated_images/digital_health_booking_app_interface.png";
 import nurseHomeImg from "@assets/generated_images/nurse_home_healthcare_service.png";
 import bloodImg from "@assets/stock_images/scientist_looking_at_c72e0122.jpg";
 import medicineImg from "@assets/stock_images/pharmacist_deliverin_f269f62b.jpg";
-import { Clock, MapPin, Star } from "lucide-react";
+import ambulanceImg from "@assets/generated_images/ambulance_emergency_medical_service.png";
+import { Clock, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { VideoConsultationBooking } from "@/components/modals/VideoConsultationBooking";
+import { PhysicianBooking } from "@/components/modals/PhysicianBooking";
+import { NurseBooking } from "@/components/modals/NurseBooking";
+import { LabTestBooking } from "@/components/modals/LabTestBooking";
+import { MedicineDeliveryBooking } from "@/components/modals/MedicineDeliveryBooking";
+import { AmbulanceBooking } from "@/components/modals/AmbulanceBooking";
 
 const bookingServices = [
   {
@@ -19,7 +28,17 @@ const bookingServices = [
   },
   {
     id: 2,
-    title: "Home Health Check",
+    title: "Physician",
+    description: "Professional doctor visit at your location for general check-up",
+    image: physicianImg,
+    price: "NPR 1,200",
+    time: "30-45 mins",
+    rating: 4.8,
+    reviews: 1560
+  },
+  {
+    id: 3,
+    title: "Nurse",
     description: "Professional nurses visit your home for health check-ups and vitals",
     image: nurseHomeImg,
     price: "NPR 800",
@@ -28,7 +47,7 @@ const bookingServices = [
     reviews: 1890
   },
   {
-    id: 3,
+    id: 4,
     title: "Lab Tests at Home",
     description: "Sample collection and blood tests conducted at your doorstep",
     image: bloodImg,
@@ -38,7 +57,7 @@ const bookingServices = [
     reviews: 3200
   },
   {
-    id: 4,
+    id: 5,
     title: "Medicine Delivery",
     description: "Get prescribed medicines delivered to your home within 2 hours",
     image: medicineImg,
@@ -46,10 +65,30 @@ const bookingServices = [
     time: "1-2 hrs",
     rating: 4.7,
     reviews: 5600
+  },
+  {
+    id: 6,
+    title: "Ambulance",
+    description: "Quick emergency medical transport to hospital",
+    image: ambulanceImg,
+    price: "NPR 2,000",
+    time: "5-10 mins",
+    rating: 4.9,
+    reviews: 890
   }
 ];
 
 export function BookingServices() {
+  const [activeModal, setActiveModal] = useState<number | null>(null);
+
+  const openBooking = (serviceId: number) => {
+    setActiveModal(serviceId);
+  };
+
+  const closeBooking = () => {
+    setActiveModal(null);
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-white to-green-50/30" id="services">
       <div className="container mx-auto px-4 md:px-6">
@@ -60,7 +99,7 @@ export function BookingServices() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {bookingServices.map((service, index) => (
             <motion.div
               key={service.id}
@@ -69,6 +108,7 @@ export function BookingServices() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="group rounded-2xl border border-gray-100 bg-white overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+              onClick={() => openBooking(service.id)}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden bg-gray-100">
@@ -139,6 +179,14 @@ export function BookingServices() {
           </div>
         </div>
       </div>
+
+      {/* Booking Modals */}
+      <VideoConsultationBooking isOpen={activeModal === 1} onClose={closeBooking} />
+      <PhysicianBooking isOpen={activeModal === 2} onClose={closeBooking} />
+      <NurseBooking isOpen={activeModal === 3} onClose={closeBooking} />
+      <LabTestBooking isOpen={activeModal === 4} onClose={closeBooking} />
+      <MedicineDeliveryBooking isOpen={activeModal === 5} onClose={closeBooking} />
+      <AmbulanceBooking isOpen={activeModal === 6} onClose={closeBooking} />
     </section>
   );
 }
