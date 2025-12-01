@@ -1,9 +1,13 @@
 import { Search, Menu, X, LogIn } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { LoginModal } from "@/components/modals/LoginModal";
+import { SignupModal } from "@/components/modals/SignupModal";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/98 backdrop-blur-xl border-b border-gray-100 shadow-lg transition-all duration-300">
@@ -55,17 +59,13 @@ export function Navbar() {
           <Button variant="ghost" className="rounded-full w-10 h-10 md:w-12 md:h-12 text-gray-600 hover:text-primary hover:bg-green-50/80 transition-all duration-300 flex items-center justify-center group">
             <Search className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </Button>
-          <a href="/login">
-            <Button variant="outline" className="rounded-full px-6 md:px-8 h-10 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 font-semibold transition-all duration-300 flex items-center gap-2">
-              <LogIn className="w-4 h-4" />
-              <span className="hidden sm:inline">Login</span>
-            </Button>
-          </a>
-          <a href="/signup">
-            <Button className="rounded-full px-6 md:px-8 h-10 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white font-semibold transition-all duration-300">
-              Sign Up
-            </Button>
-          </a>
+          <Button onClick={() => setShowLogin(true)} variant="outline" className="rounded-full px-6 md:px-8 h-10 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 font-semibold transition-all duration-300 flex items-center gap-2">
+            <LogIn className="w-4 h-4" />
+            <span className="hidden sm:inline">Login</span>
+          </Button>
+          <Button onClick={() => setShowSignup(true)} className="rounded-full px-6 md:px-8 h-10 md:h-12 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg hover:shadow-primary/40 text-white font-semibold transition-all duration-300">
+            Sign Up
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -93,19 +93,27 @@ export function Navbar() {
           <a href="#contact" className="block py-3 px-4 hover:bg-primary/5 text-gray-800 font-semibold rounded-lg transition-all duration-200 border-l-4 border-transparent hover:border-primary" onClick={() => setIsMenuOpen(false)}>Contact</a>
           
           <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col gap-3">
-            <a href="/login" onClick={() => setIsMenuOpen(false)}>
-              <Button variant="outline" className="w-full rounded-lg h-11 border-2 border-primary text-primary hover:bg-primary/5 font-semibold">
-                Login
-              </Button>
-            </a>
-            <a href="/signup" onClick={() => setIsMenuOpen(false)}>
-              <Button className="w-full rounded-lg h-11 bg-gradient-to-r from-primary to-green-600 text-white font-semibold">
-                Sign Up
-              </Button>
-            </a>
+            <Button onClick={() => { setShowLogin(true); setIsMenuOpen(false); }} variant="outline" className="w-full rounded-lg h-11 border-2 border-primary text-primary hover:bg-primary/5 font-semibold">
+              Login
+            </Button>
+            <Button onClick={() => { setShowSignup(true); setIsMenuOpen(false); }} className="w-full rounded-lg h-11 bg-gradient-to-r from-primary to-green-600 text-white font-semibold">
+              Sign Up
+            </Button>
           </div>
         </div>
       )}
+
+      {/* Auth Modals */}
+      <LoginModal 
+        isOpen={showLogin} 
+        onClose={() => setShowLogin(false)}
+        onSwitchToSignup={() => setShowSignup(true)}
+      />
+      <SignupModal 
+        isOpen={showSignup} 
+        onClose={() => setShowSignup(false)}
+        onSwitchToLogin={() => setShowLogin(true)}
+      />
     </nav>
   );
 }
