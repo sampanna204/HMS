@@ -2,11 +2,14 @@ import { Search, Menu, X, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { AuthModal } from "@/components/modals/AuthModal";
+import { Input } from "@/components/ui/input";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "signup">("login");
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/98 backdrop-blur-xl border-b border-gray-100 shadow-lg transition-all duration-300">
@@ -53,11 +56,38 @@ export function Navbar() {
           </a>
         </div>
 
-        {/* Right Side - Auth Buttons */}
+        {/* Right Side - Search & Auth Buttons */}
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" className="rounded-full w-10 h-10 md:w-12 md:h-12 text-gray-600 hover:text-primary hover:bg-green-50/80 transition-all duration-300 flex items-center justify-center group">
-            <Search className="w-6 h-6 group-hover:scale-110 transition-transform" />
-          </Button>
+          {showSearch ? (
+            <div className="flex items-center gap-2 animate-in slide-in-from-right-5 duration-200">
+              <Input
+                type="text"
+                placeholder="Search services..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-48 h-10 rounded-full"
+                autoFocus
+              />
+              <Button 
+                variant="ghost" 
+                onClick={() => {
+                  setShowSearch(false);
+                  setSearchQuery("");
+                }}
+                className="rounded-full w-10 h-10 text-gray-600 hover:text-primary"
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+          ) : (
+            <Button 
+              variant="ghost" 
+              onClick={() => setShowSearch(true)}
+              className="rounded-full w-10 h-10 md:w-12 md:h-12 text-gray-600 hover:text-primary hover:bg-green-50/80 transition-all duration-300 flex items-center justify-center group"
+            >
+              <Search className="w-6 h-6 group-hover:scale-110 transition-transform" />
+            </Button>
+          )}
           <Button onClick={() => { setAuthMode("login"); setShowAuth(true); }} variant="outline" className="rounded-full w-10 h-10 md:w-12 md:h-12 border-2 border-primary text-primary hover:bg-primary/5 transition-all duration-300 flex items-center justify-center">
             <LogIn className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
