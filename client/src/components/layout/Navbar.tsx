@@ -37,9 +37,12 @@ export function Navbar() {
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary to-green-600 flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
               H
             </div>
-            <div className="hidden sm:block">
-              <span className="font-bold text-lg md:text-xl text-primary group-hover:text-green-700 transition-colors">
-                Sanjivani Health Care Service
+            <div>
+              <span className="font-bold text-sm sm:text-lg md:text-xl text-primary group-hover:text-green-700 transition-colors">
+                Sanjivani
+              </span>
+              <span className="hidden sm:inline font-bold text-sm sm:text-lg md:text-xl text-primary group-hover:text-green-700 transition-colors">
+                {' '}Health Care Service
               </span>
             </div>
           </a>
