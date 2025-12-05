@@ -28,7 +28,7 @@ export function Navbar() {
           {/* Logo */}
           <a 
             href="/" 
-            className="flex items-center gap-2 group cursor-pointer flex-shrink-0"
+            className="flex items-center gap-2 group cursor-pointer flex-shrink-0 flex-1 md:flex-none"
             onClick={(e) => {
               e.preventDefault();
               setLocation("/");
@@ -72,41 +72,51 @@ export function Navbar() {
           </div>
 
           {/* Right Side - Auth/User */}
-          <div className="hidden md:flex items-center gap-3">
-            {isAuthenticated ? (
-              <>
-                <div className="relative group">
-                  <Button variant="outline" className="rounded-full h-10 px-4 border-2 border-primary">
-                    <User className="w-4 h-4 mr-2" />
-                    <span className="text-sm font-medium">{user?.name || "User"}</span>
-                  </Button>
-                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                    <div className="p-2">
-                      <button
-                        onClick={logout}
-                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-                      >
-                        <LogOut className="w-4 h-4" />
-                        Logout
-                      </button>
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3">
+              {isAuthenticated ? (
+                <>
+                  <div className="relative group">
+                    <Button variant="outline" className="rounded-full h-10 px-4 border-2 border-primary">
+                      <User className="w-4 h-4 mr-2" />
+                      <span className="text-sm font-medium">{user?.name || "User"}</span>
+                    </Button>
+                    <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                      <div className="p-2">
+                        <button
+                          onClick={logout}
+                          className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          Logout
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <Button
-                  onClick={() => {
-                    setAuthMode("login");
-                    setShowAuth(true);
-                  }}
-                  className="rounded-full h-10 px-6 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg font-semibold flex items-center gap-2"
-                >
-                  <User className="w-4 h-4" />
-                  Account
-                </Button>
-              </>
-            )}
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => {
+                      setAuthMode("login");
+                      setShowAuth(true);
+                    }}
+                    className="rounded-full h-10 px-6 bg-gradient-to-r from-primary to-green-600 hover:shadow-lg font-semibold flex items-center gap-2"
+                  >
+                    <User className="w-4 h-4" />
+                    Account
+                  </Button>
+                </>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 text-gray-700 hover:text-primary transition-all flex-shrink-0"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
 
@@ -174,13 +184,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2 text-gray-700 hover:text-primary transition-all flex-shrink-0"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
       {/* Mobile Search */}
