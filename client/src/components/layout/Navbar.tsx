@@ -38,7 +38,7 @@ export function Navbar() {
               H
             </div>
             <div>
-              <span className="font-bold text-xs sm:text-sm md:text-lg lg:text-xl text-primary group-hover:text-green-700 transition-colors line-clamp-2">
+              <span className="font-bold text-sm sm:text-base md:text-xl lg:text-2xl text-primary group-hover:text-green-700 transition-colors line-clamp-2">
                 Sanjivani Health Care Service
               </span>
             </div>
