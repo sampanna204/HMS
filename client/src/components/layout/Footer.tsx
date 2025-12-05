@@ -12,7 +12,7 @@ export function Footer() {
               <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
                 S
               </div>
-              <span className="font-bold text-xl">Sanjivani Health Care Service</span>
+              <span className="font-bold text-xl text-primary">Sanjivani Health Care Service</span>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Empowering you and your family with the right care and support to stay healthy, happy, and thriving every step of the way.
