@@ -1,5 +1,6 @@
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin, CreditCard } from "lucide-react";
 import { Link } from "wouter";
+import logo from "@/assets/sanjivani_logo.png";
 
 export function Footer() {
   return (
@@ -8,11 +9,18 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
-                S
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                <img 
+                  src={logo} 
+                  alt="Sanjivani Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="font-bold text-xl text-primary">Sanjivani Health Care Service</span>
+              <div>
+                <span className="block font-bold text-sm text-primary">Sanjivani</span>
+                <span className="block text-xs text-gray-300">Health Care Service</span>
+              </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Empowering you and your family with the right care and support to stay healthy, happy, and thriving every step of the way.
