@@ -81,8 +81,8 @@ export function Hero() {
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
               <img 
                 src={heroImage} 
-                alt="Doctor smiling" 
-                className="w-full h-[500px] object-cover object-center"
+                alt="Healthcare Professional" 
+                className="w-full h-auto object-contain"
               />
             </div>
 
