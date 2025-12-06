@@ -5,6 +5,7 @@ import { AuthModal } from "@/components/modals/AuthModal";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/App";
 import { useLocation } from "wouter";
+import logo from "@/assets/sanjivani_logo.png";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,9 +35,11 @@ export function Navbar() {
               setLocation("/");
             }}
           >
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary to-green-600 flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
-              H
-            </div>
+            <img 
+              src={logo} 
+              alt="Sanjivani Logo" 
+              className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-105 transition-transform"
+            />
             <div>
               <span className="font-bold text-sm sm:text-base md:text-xl lg:text-2xl text-primary group-hover:text-green-700 transition-colors line-clamp-2">
                 Sanjivani Health Care Service
