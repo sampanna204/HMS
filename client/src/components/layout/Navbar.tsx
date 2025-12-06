@@ -29,20 +29,25 @@ export function Navbar() {
           {/* Logo */}
           <a 
             href="/" 
-            className="flex items-center gap-2 group cursor-pointer flex-shrink-0 flex-1 md:flex-none"
+            className="flex items-center gap-3 group cursor-pointer flex-shrink-0"
             onClick={(e) => {
               e.preventDefault();
               setLocation("/");
             }}
           >
-            <img 
-              src={logo} 
-              alt="Sanjivani Logo" 
-              className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-105 transition-transform"
-            />
-            <div>
-              <span className="font-bold text-sm sm:text-base md:text-xl lg:text-2xl text-primary group-hover:text-green-700 transition-colors line-clamp-2">
-                Sanjivani Health Care Service
+            <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <img 
+                src={logo} 
+                alt="Sanjivani Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="hidden sm:block">
+              <span className="block font-bold text-sm md:text-lg lg:text-xl text-primary group-hover:text-green-700 transition-colors duration-300">
+                Sanjivani
+              </span>
+              <span className="hidden md:block text-xs text-gray-600 font-medium">
+                Health Care Service
               </span>
             </div>
           </a>
