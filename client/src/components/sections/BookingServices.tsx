@@ -51,7 +51,7 @@ const bookingServices = [
   },
   {
     id: 4,
-    title: "Lab Tests at Home",
+    title: "Laboratory Service",
     description: "Sample collection and blood tests conducted at your doorstep",
     image: bloodImg,
     price: "NPR 300+",

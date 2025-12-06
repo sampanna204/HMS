@@ -66,7 +66,7 @@ export function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-primary" />
-                <span>Lab Tests at Home</span>
+                <span>Laboratory Service</span>
               </div>
             </div>
           </motion.div>
