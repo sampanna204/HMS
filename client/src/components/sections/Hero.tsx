@@ -86,22 +86,6 @@ export function Hero() {
               />
             </div>
 
-            {/* Floating Card 1 */}
-            <motion.div 
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="absolute top-10 -left-6 md:-left-10 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 z-20 animate-bounce-slow"
-            >
-              <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-500">
-                <Heart className="w-5 h-5 fill-current" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Patient Satisfaction</p>
-                <p className="font-bold text-gray-900">98.5%</p>
-              </div>
-            </motion.div>
-
             {/* Floating Card 2 */}
             <motion.div 
               initial={{ y: -20, opacity: 0 }}
