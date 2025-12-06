@@ -35,7 +35,7 @@ export function Navbar() {
               setLocation("/");
             }}
           >
-            <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <img 
                 src={logo} 
                 alt="Sanjivani Logo" 
@@ -43,10 +43,10 @@ export function Navbar() {
               />
             </div>
             <div className="hidden sm:block">
-              <span className="block font-bold text-sm md:text-lg lg:text-xl text-primary group-hover:text-green-700 transition-colors duration-300">
+              <span className="block font-bold text-base md:text-2xl lg:text-3xl text-primary group-hover:text-green-700 transition-colors duration-300">
                 Sanjivani
               </span>
-              <span className="hidden md:block text-xs text-gray-600 font-medium">
+              <span className="hidden md:block text-sm text-gray-600 font-medium">
                 Health Care Service
               </span>
             </div>
